@@ -308,6 +308,99 @@ public class Main {
         System.out.println(singleton1 == singleton2); // Output: true
     }
 }
+```
+# Q7: Java Application for Employee Data Handling
+## Code Implementation
+
+```java
+import java.io.*;
+import java.util.*;
+
+// Employee Class
+class Employee {
+    private int id;
+    private String name;
+    private double salary;
+
+    // Constructor
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Getters
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    // toString method for formatted output
+    @Override
+    public String toString() {
+        return id + ", " + name + ", " + salary;
+    }
+}
+
+// Main Class
+public class Main {
+    public static void main(String[] args) {
+        // Create employee data
+        List<Employee> employees1 = Arrays.asList(
+            new Employee(1, "Alice", 50000),
+            new Employee(2, "Bob", 60000),
+            new Employee(3, "Charlie", 70000)
+        );
+
+        List<Employee> employees2 = Arrays.asList(
+            new Employee(4, "David", 55000),
+            new Employee(5, "Eva", 65000),
+            new Employee(6, "Frank", 75000)
+        );
+
+        // Save employee data to files
+        saveToFile(employees1, "employees1.txt");
+        saveToFile(employees2, "employees2.txt");
+
+        // Create threads to read from files
+        Thread thread1 = new Thread(() -> readFromFile("employees1.txt"), "File1-Thread");
+        Thread thread2 = new Thread(() -> readFromFile("employees2.txt"), "File2-Thread");
+
+        thread1.start();
+        thread2.start();
+    }
+
+    // Method to save employees to a file without throwing IOException
+    public static void saveToFile(List<Employee> employees, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (Employee employee : employees) {
+                writer.write(employee.toString());
+                writer.newLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+    // Method to read from a file without throwing IOException
+    public static void readFromFile(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(Thread.currentThread().getName() + ": " + line);
+            }
+        } catch (Exception e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+}
 
 
 
