@@ -130,6 +130,89 @@ public class Main {
     }
 }
 ```
+# Answer for Q4: What’s an Exception?
+
+---
+
+## a) Under what circumstances should a developer throw an exception?
+
+A developer should throw an exception when an abnormal condition occurs in the program that prevents it from functioning correctly. Examples include:
+
+1. **Invalid Input**:  
+   - If a user provides an invalid value (e.g., entering a negative age or dividing by zero).
+
+2. **Resource Issues**:  
+   - When a required resource, like a file, is unavailable or inaccessible.
+
+3. **Violations of Rules**:  
+   - When certain program rules or constraints are broken, like trying to withdraw more money than the available balance in a bank account.
+
+Throwing an exception ensures that the program can signal this abnormal condition for handling.
+
+---
+
+## b) Should a thrown exception always be caught?
+
+- No, a thrown exception does not always need to be caught.
+
+1. **When to Catch an Exception**:  
+   - If the program can meaningfully handle the exception (e.g., by providing alternative logic or a recovery mechanism), it should be caught using a `try-catch` block.
+
+2. **When Not to Catch an Exception**:  
+   - If the exception is something the program cannot handle locally (like a critical system error), it can be allowed to propagate up the call stack and handled by a higher-level method or Java’s in-built exception handler.
+
+- **Finally Block**:  
+  - Even if the exception is not caught, the `finally` block will still execute, ensuring cleanup tasks (like closing files or releasing resources) are performed.
+
+---
+
+## c) What’s the difference between checked and unchecked exceptions?
+
+| **Aspect**            | **Checked Exceptions**                                       | **Unchecked Exceptions**                              |
+|------------------------|-------------------------------------------------------------|------------------------------------------------------|
+| **Compile-Time Check** | Checked during compile time by the compiler.                | Not checked during compile time.                    |
+| **Handling**           | Must be handled using a `try-catch` block or declared with `throws`. | Handling is optional and can be ignored by the programmer. |
+| **Examples**           | `IOException`, `SQLException`                              | `NullPointerException`, `ArrayIndexOutOfBoundsException`, `ArithmeticException` |
+
+---
+
+## d) Code for Defining a Custom Exception
+
+To create a custom exception:
+- Inherit the `Exception` class or any of its child classes.
+- Custom exceptions are useful for throwing and handling specific errors in the program.
+
+### Example: Custom Exception
+
+```java
+// Defining the custom exception
+class MyCustomException extends Exception {
+    // Constructor to accept the custom error message
+    public MyCustomException(String message) {
+        super(message);
+    }
+}
+
+// Using the custom exception
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Simulating a condition to throw the exception
+            validateAge(-1);
+        } catch (MyCustomException e) {
+            // Catching and displaying the custom exception
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+
+    // Method to validate age and throw custom exception
+    public static void validateAge(int age) throws MyCustomException {
+        if (age < 0) {
+            throw new MyCustomException("Age cannot be negative.");
+        }
+    }
+}
+
 
 
 
