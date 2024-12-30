@@ -212,6 +212,39 @@ public class Main {
         }
     }
 }
+```
+# Answer for Q5: Difference between Concurrency and Parallelism
+
+---
+
+## Concurrency
+- Concurrency means handling multiple tasks at the same time by **interleaving their execution**.
+- Tasks appear to run simultaneously but may not actually execute at the same time.
+- Focuses on **task management** and making programs responsive.
+
+**Example**: Typing a document while saving it in the background.
+
+---
+
+## Parallelism
+- Parallelism means executing multiple tasks **simultaneously** using multiple CPU cores.
+- Focuses on **speeding up execution** by dividing tasks and running them on different processors.
+- Requires **multi-core hardware**.
+
+**Example**: Downloading multiple files simultaneously.
+
+---
+
+## Key Differences
+
+| **Feature**    | **Concurrency**                              | **Parallelism**                              |
+|-----------------|---------------------------------------------|---------------------------------------------|
+| **Execution**   | Tasks are interleaved, not truly simultaneous. | Tasks run simultaneously on multiple processors. |
+| **Goal**        | Efficient task management.                  | Faster task execution.                      |
+
+**Summary**:  
+Concurrency manages tasks efficiently, while parallelism physically executes tasks at the same time.
+
 
 
 
