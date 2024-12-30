@@ -51,7 +51,26 @@ There are two main types of polymorphism in Java:
     ->It happens during the compilation of the program.
     ->Method overloading means having multiple methods with the same name but different parameter lists (number, type, or order of parameters).
     ->It allows you to perform a similar operation in slightly different ways.
+```java
+class Calculator {
+    // Adding two integers
+    int add(int a, int b) {
+        return a + b;
+    }
 
+    // Adding two doubles
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(2, 3));       // Calls the int version
+        System.out.println(calc.add(2.5, 3.5));  // Calls the double version
+    }
+}
 
 
 
