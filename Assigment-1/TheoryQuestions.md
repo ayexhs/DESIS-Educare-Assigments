@@ -108,8 +108,6 @@ public class Main {
   3. Allows a child class to provide its own version of a method that is already defined in its parent class.
   4. Implements the concept of **dynamic method dispatch**, where the method that gets called is determined by the **object type** (not the reference type).
 
----
-
 ### Example: Run-Time Polymorphism
 ```java
 class Animal {
