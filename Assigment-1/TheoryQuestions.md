@@ -1,56 +1,83 @@
------------------------------------Question1-------------------------------
-Q1. Identify and list down key differences amongst JDK, JRE and JVM.
+# Assignment Questions
 
-JDK (Java Development Kit):
-  1.It is used by developers to create and compile Java programs.
-  2.Includes tools like the Java compiler (javac), debugger, and JRE.
-JRE (Java Runtime Environment):
-  1.Used to run Java applications.
-  2.Includes the Java Virtual Machine (JVM) and libraries but does not have tools for development (like javac).
-JVM (Java Virtual Machine):
-  1.It runs the compiled Java bytecode.
-  2.Converts bytecode into machine code and ensures Java programs run the same way on any platform.
+---
 
+## Question 1: Key Differences Between JDK, JRE, and JVM
 
------------------------------------Question2-------------------------------
-Q2. Explain the Garbage Collection process in Java with diagrams covering various generations where the
-memory is managed.
+### **JDK (Java Development Kit):**
+1. It is used by developers to create and compile Java programs.
+2. Includes tools like the Java compiler (`javac`), debugger, and JRE.
 
-->Garbage Collection (GC) in Java is an automatic process where unused objects are removed from memory to free up space for new ones. 
-It helps in managing memory efficiently so that we don’t have to manually delete objects, as is the case in some other programming languages. 
-The GC runs in the background as a Daemon Thread, meaning it works quietly without disturbing the program.
-->Java divides the memory (heap) into three main sections:
-Eden Space: This is where new objects are created. It’s like the first stop for all objects.
-Survivor Spaces (S0 and S1): If objects survive for a while in Eden (they are still in use after some time), they are moved to these spaces.
-Old Generation: Long-lived objects, like those used throughout the program, are eventually moved here.
-->Mark: The GC identifies which objects are still being used.
-Sweep: It removes the objects that are no longer needed, reclaiming memory.
-Compact: After cleaning, it may reorganize the remaining objects to optimize memory usage.
-->Eligibility:
-1.You set the object’s reference to null (e.g., myObject = null;).
-2.The reference is reassigned to another object (e.g., myObject = anotherObject;).
-3.The object was created inside a method, and the method has finished running.
-4.It’s an anonymous object, meaning it was created without a name (e.g., new MyClass();).
-->Types of Garbage Collection in Java
+### **JRE (Java Runtime Environment):**
+1. Used to run Java applications.
+2. Includes the Java Virtual Machine (JVM) and libraries but does not have tools for development (like `javac`).
+
+### **JVM (Java Virtual Machine):**
+1. It runs the compiled Java bytecode.
+2. Converts bytecode into machine code and ensures Java programs run the same way on any platform.
+
+---
+
+## Question 2: Garbage Collection Process in Java
+
+Garbage Collection (GC) in Java is an automatic process where unused objects are removed from memory to free up space for new ones. It helps in managing memory efficiently, so we don’t have to manually delete objects, as is the case in some other programming languages. 
+
+The GC runs in the background as a **Daemon Thread**, meaning it works quietly without disturbing the program.
+
+### **Memory Management in Java**
+
+Java divides the memory (heap) into three main sections:
+
+1. **Eden Space**:  
+   - This is where new objects are created.  
+   - It’s like the first stop for all objects.
+
+2. **Survivor Spaces (S0 and S1)**:  
+   - If objects survive for a while in Eden (they are still in use after some time), they are moved to these spaces.
+
+3. **Old Generation**:  
+   - Long-lived objects, like those used throughout the program, are eventually moved here.
+
+### **Garbage Collection Steps**
+1. **Mark**: The GC identifies which objects are still being used.  
+2. **Sweep**: It removes the objects that are no longer needed, reclaiming memory.  
+3. **Compact**: After cleaning, it may reorganize the remaining objects to optimize memory usage.
+
+### **When is an Object Eligible for Garbage Collection?**
+1. You set the object’s reference to `null` (e.g., `myObject = null;`).
+2. The reference is reassigned to another object (e.g., `myObject = anotherObject;`).
+3. The object was created inside a method, and the method has finished running.
+4. It’s an anonymous object, meaning it was created without a name (e.g., `new MyClass();`).
+
+### **Types of Garbage Collection in Java**
 Java offers different strategies for garbage collection, depending on your program’s needs:
-Serial GC: Works step-by-step and is best for simple programs.
-Parallel GC: Uses multiple threads to clean up faster, ideal for larger programs.
-Concurrent Mark Sweep (CMS): Focuses on reducing pause times, so your program keeps running smoothly during GC.
-G1 GC: Splits the memory into smaller chunks and cleans the most important parts first, making it great for big applications.
 
+1. **Serial GC**:  
+   - Works step-by-step and is best for simple programs.
 
------------------------------------QUESTION3--------------------------------
-Q3. Explain the difference between Compile and Run-time polymorphism. How are both achieved in Java? Give
-examples to elaborate.
-Polymorphism is a concept which explains that single task can be performed in multiple ways. 
-In simple terms, it allows one action to behave differently depending on the context. The word "polymorphism" itself means "many forms."
+2. **Parallel GC**:  
+   - Uses multiple threads to clean up faster, ideal for larger programs.
 
-There are two main types of polymorphism in Java:
-1. Compile-Time Polymorphism
-    ->Also known as method overloading.
-    ->It happens during the compilation of the program.
-    ->Method overloading means having multiple methods with the same name but different parameter lists (number, type, or order of parameters).
-    ->It allows you to perform a similar operation in slightly different ways.
+3. **Concurrent Mark Sweep (CMS)**:  
+   - Focuses on reducing pause times, so your program keeps running smoothly during GC.
+
+4. **G1 GC**:  
+   - Splits the memory into smaller chunks and cleans the most important parts first, making it great for big applications.
+
+---
+
+## Question 3: Compile-Time and Run-Time Polymorphism in Java
+
+Polymorphism is a concept that explains how a single task can be performed in multiple ways. In simple terms, it allows one action to behave differently depending on the context. The word "polymorphism" itself means "many forms."
+
+### **Types of Polymorphism in Java**
+
+1. **Compile-Time Polymorphism (Method Overloading):**
+   - Happens during the compilation of the program.
+   - Involves having multiple methods with the same name but different parameter lists (number, type, or order of parameters).
+   - Allows you to perform similar operations in slightly different ways.
+
+#### **Example: Compile-Time Polymorphism**
 ```java
 class Calculator {
     // Adding two integers
