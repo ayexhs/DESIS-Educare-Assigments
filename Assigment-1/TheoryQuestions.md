@@ -98,3 +98,40 @@ public class Main {
         System.out.println(calc.add(2.5, 3.5));  // Calls the double version
     }
 }
+```
+
+## Run-Time Polymorphism
+- Run-time polymorphism is achieved through **method overriding**, where a **child class** provides its own implementation of a method in the **parent class**.
+- **Key Points:**
+  1. Also known as **method overriding**.
+  2. It happens during the **execution of the program (runtime)**.
+  3. Allows a child class to provide its own version of a method that is already defined in its parent class.
+  4. Implements the concept of **dynamic method dispatch**, where the method that gets called is determined by the **object type** (not the reference type).
+
+---
+
+### Example: Run-Time Polymorphism
+```java
+class Animal {
+    void sound() {
+        System.out.println("Animals make sounds");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dogs bark");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Dog(); // Reference of parent, object of child
+        myAnimal.sound(); // Calls the overridden method in Dog class
+    }
+}
+```
+
+
+
