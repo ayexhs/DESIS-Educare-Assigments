@@ -242,9 +242,72 @@ public class Main {
 | **Execution**   | Tasks are interleaved, not truly simultaneous. | Tasks run simultaneously on multiple processors. |
 | **Goal**        | Efficient task management.                  | Faster task execution.                      |
 
-**Summary**:  
 Concurrency manages tasks efficiently, while parallelism physically executes tasks at the same time.
 
+# Answer for Q6: Singleton Class with Thread Safety
+
+---
+
+## What is a Singleton Class?
+A Singleton class ensures that only a single instance of the class can be created. This is useful in scenarios where a single point of control is needed, such as managing configuration settings, database connections, etc.
+
+---
+
+## a) How to Ensure Only a Single Instance is Created:
+1. **Private Static Variable**:  
+   Use a private static variable to hold the single instance of the class.
+2. **Private Constructor**:  
+   Make the constructor private to prevent external instantiation.
+3. **Public Static Method**:  
+   Provide a public static method to return the single instance.
+
+---
+
+## b) What if Multiple Threads Try to Create the Class?
+1. **Thread Safety with `synchronized`**:  
+   Use the `synchronized` keyword in the method that creates the instance to prevent multiple threads from creating multiple instances.
+2. **Double-Checked Locking**:  
+   To improve performance, synchronize only during the first instance creation using double-checked locking.
+
+---
+
+## Code: Singleton Class with Thread Safety
+
+```java
+class Singleton {
+    // Static variable to hold the single instance of the class
+    private static Singleton instance;
+
+    // Private constructor to prevent creating new objects from outside
+    private Singleton() {}
+
+    // Public method to provide the single instance, synchronized for thread safety
+    public static synchronized Singleton getInstance() {
+        if (instance == null) { // Create instance if it doesn't exist
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    // Example method to demonstrate the Singleton behavior
+    public void showMessage() {
+        System.out.println("This is a Singleton instance: " + this);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Accessing the Singleton instance
+        Singleton singleton1 = Singleton.getInstance();
+        singleton1.showMessage();
+
+        Singleton singleton2 = Singleton.getInstance();
+        singleton2.showMessage();
+
+        // Both instances are the same
+        System.out.println(singleton1 == singleton2); // Output: true
+    }
+}
 
 
 
